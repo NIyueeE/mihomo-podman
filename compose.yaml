@@ -1,0 +1,29 @@
+services:
+  mihomo:
+    image: ${MIHOMO_REGISTRY}/metacubex/mihomo:${MIHOMO_TAG}
+    container_name: mihomo
+    network_mode: host
+    privileged: true
+    restart: always
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    volumes:
+      - ./mihomo:/root/.config/mihomo
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+  metacubexd:
+    image: ${METACUBEXD_REGISTRY}/metacubex/metacubexd:${METACUBEXD_TAG}
+    container_name: metacubexd
+    restart: always
+    network_mode: bridge
+    ports:
+      - "${WEBUI_PORT}:80"
+    volumes:
+      - ./metacubexd:/config/caddy
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
