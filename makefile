@@ -34,25 +34,25 @@ update-geo:
 # Update container images
 .PHONY: update
 update:
-	podman-compose -f compose.yaml pull
-	podman-compose -f compose.yaml up -d --force-recreate
+	podman compose -f compose.yaml pull
+	podman compose -f compose.yaml up -d --force-recreate
 
 # Start services
 .PHONY: up
 up:
-	podman-compose -f compose.yaml up -d $(ARGS)
+	podman compose -f compose.yaml up -d $(ARGS)
 
 # Stop services
 .PHONY: down
 down:
-	podman-compose -f compose.yaml down $(ARGS)
+	podman compose -f compose.yaml down $(ARGS)
 
 # Restart services
 .PHONY: restart
 restart:
-	podman-compose -f compose.yaml restart $(ARGS)
+	podman compose -f compose.yaml restart $(ARGS)
 
 # View logs
 .PHONY: logs
 logs:
-	podman-compose -f compose.yaml logs -f $(ARGS)
+	podman compose -f compose.yaml logs -f $(ARGS)
