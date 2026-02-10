@@ -13,21 +13,21 @@ update-geo:
 
 # Update container images
 update:
-    podman-compose -f compose.yaml pull
-    podman-compose -f compose.yaml up -d --force-recreate
+    podman compose -f compose.yaml pull
+    podman compose -f compose.yaml up -d --force-recreate
 
 # Start services
 up *args:
-    podman-compose -f compose.yaml up -d {{args}}
+    podman compose -f compose.yaml up -d {{args}}
 
 # Stop services
 down *args:
-    podman-compose -f compose.yaml down {{args}}
+    podman compose -f compose.yaml down {{args}}
 
 # Restart services
 restart *args:
-    podman-compose -f compose.yaml restart {{args}}
+    podman compose -f compose.yaml restart {{args}}
 
 # View logs
 logs *args:
-    podman-compose -f compose.yaml logs -f {{args}}
+    podman compose -f compose.yaml logs -f {{args}}
